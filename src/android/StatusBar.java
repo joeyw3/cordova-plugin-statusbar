@@ -71,6 +71,10 @@ public class StatusBar extends CordovaPlugin {
         window = activity.getWindow();
 
         activity.runOnUiThread(() -> {
+            if(preferences.getBoolean("StatusBarPreventInit", false)) {
+                return;
+            }
+
             // Clear flag FLAG_FORCE_NOT_FULLSCREEN which is set initially
             // by the Cordova.
             window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
